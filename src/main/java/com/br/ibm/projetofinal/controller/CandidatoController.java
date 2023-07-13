@@ -35,16 +35,16 @@ public class CandidatoController {
     }
 
     @PostMapping(value = "/schedule", headers = "content-type=application/json")
-    public ResponseEntity marcarEntrevista(@RequestBody CodCandidatoDTO codCandidato) {
+    public ResponseEntity<ResponseDTO> marcarEntrevista(@RequestBody CodCandidatoDTO codCandidato) {
 
         candidatoService.marcarEntrevista(codCandidato.codCandidato());
-        return ResponseEntity.ok().body(messageSchedule);
+        return ResponseEntity.ok().body(new ResponseDTO(messageSchedule));
     }
 
     @PostMapping(value = "/disqualify", headers = "content-type=application/json")
-    public ResponseEntity desqualificarCandidato(@RequestBody CodCandidatoDTO codCandidato) {
+    public ResponseEntity<ResponseDTO> desqualificarCandidato(@RequestBody CodCandidatoDTO codCandidato) {
         candidatoService.desqualificarCandidato(codCandidato.codCandidato());
-        return ResponseEntity.ok().body(messageDisqualify);
+        return ResponseEntity.ok().body(new ResponseDTO(messageDisqualify));
     }
 
     @GetMapping(value = "/status/candidate/{codCandidato}")
@@ -55,9 +55,9 @@ public class CandidatoController {
     }
 
     @PostMapping(value = "/approve", headers = "content-type=application/json")
-    public ResponseEntity aprovarCandidato(@RequestBody CodCandidatoDTO codCandidato) {
+    public ResponseEntity <ResponseDTO> aprovarCandidato(@RequestBody CodCandidatoDTO codCandidato) {
         candidatoService.aprovarCandidato(codCandidato.codCandidato());
-       return ResponseEntity.ok().body(messageApprove);
+       return ResponseEntity.ok().body(new ResponseDTO(messageApprove));
     }
 
     @GetMapping(value = "/approved")
